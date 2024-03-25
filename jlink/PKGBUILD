@@ -1,0 +1,31 @@
+# Maintainer: pzl <alsoelp@gmail.com>
+
+pkgname=jlink
+pkgver=20240325
+_pkgver=V796b
+pkgrel=1
+pkgdesc="meta package for JLink ARM embedded tools from Segger"
+arch=('i686' 'x86_64')
+url="https://www.segger.com/jlink-software.html"
+_source=("https://www.segger.com/downloads/jlink/JLink_Linux_${_pkgver}_x86_64.tgz")
+license=('custom') #https://www.segger.com/cms/admin/uploads/userfiles/file/J-Link/license_agreement.txt
+depends=('jlink-software-and-documentation' 'ozone' 'jlink-systemview')
+
+build() {
+	#BY ACCEPTING THIS AGREEMENT, YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE SOFTWARE.
+	$(curl -s -X POST -d "accept_license_agreement=accepted&submit=Download+software" "$_source" -o ./$pkgname-$pkgver.tgz)
+	# extract the source
+	tar -xzf ./$pkgname-$pkgver.tgz
+
+}
+package() {
+	#short rename so we can use the same name for the package
+	mv "$srcdir/JLink_Linux_${_pkgver}_x86_64" "$srcdir/$pkgname-$pkgver"
+	cd "$srcdir/$pkgname-$pkgver"
+	#install the files
+	install -Dm755 JLinkExe "$pkgdir/usr/bin/JLinkExe"
+	install -Dm755 JLinkGDBServer "$pkgdir/usr/bin/JLinkGDBServer"
+	install -Dm755 JLinkRTTClient "$pkgdir/usr/bin/JLinkRTTClient"
+	install
+	
+}
