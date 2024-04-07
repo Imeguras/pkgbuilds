@@ -1,0 +1,21 @@
+# Maintainer: piernov <piernov@piernov.org>
+
+pkgname=flexbv-free-bin
+pkgver=5.0339
+pkgrel=2
+pkgdesc="The Free Version of FlexBV Boardview"
+arch=('x86_64')
+url="https://pldaniels.com/flexbv/"
+license=('custom')
+conflicts=('flexbv-beta-bin' 'flexbv-bin')
+depends=('sdl2' 'fontconfig' 'sqlite' 'zlib' 'gtk3' 'libpng')
+makedepends=()
+source=("https://pldaniels.com/flexbv5/free/FlexBVFree-${pkgver}-linux.tar.gz")
+md5sums=('995c7569e82c9771fdb33e0141c1dc81')
+
+package() {
+	install -d -m755 "$pkgdir/opt/flexbv"
+	cp -a "FlexBV-$pkgver-linux"/* "$pkgdir/opt/flexbv"
+	install -D -m755 flexbv.sh "$pkgdir/usr/bin/flexbv"
+	ln -s "/tmp/flexbv.log" "$pkgdir/opt/flexbv/flexbv.log"
+}

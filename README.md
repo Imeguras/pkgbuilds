@@ -5,6 +5,6 @@ So here are some handmade PKGBUILD for various things I use on Arch Linux. At th
 Im not one to really read the full license and im trying to be careful of which packages i put here. But if i miss some distribution clause and you wish to take it down please contact me and i'll remove it.
 
 ## List
-- JLink Software(only the executables)(the official one is ultra old and for some reason doesnt have everything)
+- JLink Software(only the executables)(the official one is ultra old and for some reason doesnt have everything)(well this one is deprecated? apparently documentation is the one that has it???)
 
 

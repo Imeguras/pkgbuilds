@@ -26,6 +26,6 @@ package() {
 	install -Dm755 JLinkExe "$pkgdir/usr/bin/JLinkExe"
 	install -Dm755 JLinkGDBServer "$pkgdir/usr/bin/JLinkGDBServer"
 	install -Dm755 JLinkRTTClient "$pkgdir/usr/bin/JLinkRTTClient"
-	install
+	install -Dm755 JLinkSWOViewer "$pkgdir/usr/bin/JLinkSWOViewer"
 	
 }

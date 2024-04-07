@@ -1,0 +1,23 @@
+# Maintainer: Imeguras lmao
+pkgname=mathlab-mpm-bin
+pkgver=r2024a
+pkgrel=1
+pkgdesc="A Package Manager for MathWork products meant to ease the installation of toolboxes"
+arch=('x86_64')
+
+
+
+license=('custom')
+source=("https://www.mathworks.com/mpm/glnxa64/mpm"
+		"https://raw.githubusercontent.com/mathworks-ref-arch/matlab-dockerfile/main/LICENSE.md")
+
+md5sums=('2ad11e359f0b4a127fe578684340f682'
+		 'cfa170072ac90b203b5f23d412457bfc')
+package () {
+	#wget https://www.mathworks.com/mpm/glnxa64/mpm -O mpm
+	#wget $license_url -O LICENSE.md
+	
+	chmod +x mpm
+	install -Dm755 mpm "$pkgdir/usr/bin/mpm"
+	install -Dm644 LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
